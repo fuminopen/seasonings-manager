@@ -10,6 +10,16 @@ final class Seasoning extends Model
     use HasFactory;
 
     /**
+     * 残量を取得する
+     *
+     * @return int
+     */
+    public function getRemaining(): int
+    {
+        return $this->remaining;
+    }
+
+    /**
      * 残量を設定する
      *
      * @param  int $remaining
