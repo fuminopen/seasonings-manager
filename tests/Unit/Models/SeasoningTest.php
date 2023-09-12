@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Exceptions\Models\InvalidRemainingException;
 use App\Models\Seasoning;
 use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;
@@ -52,8 +53,9 @@ class SeasoningTest extends TestCase
      * 残量は0 ~ 100の間
      *
      * @test
+     * @dataProvider invalidRemainingProvider
      */
-    public function remainingMustBeBetween0To100(): void
+    public function remainingMustBeBetween0To100(int $remaining): void
     {
         Model::unguard();
 
@@ -63,6 +65,17 @@ class SeasoningTest extends TestCase
 
         $this->expectException(InvalidRemainingException::class);
 
-        $sut->setRemaining(101);
+        $sut->setRemaining($remaining);
+    }
+
+    /**
+     * 不正な残量
+     */
+    public static function invalidRemainingProvider(): array
+    {
+        return [
+            [-1,],
+            [101,],
+        ];
     }
 }
