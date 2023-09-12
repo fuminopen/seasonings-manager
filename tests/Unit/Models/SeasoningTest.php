@@ -4,6 +4,7 @@ namespace Tests\Unit\Models;
 
 use App\Exceptions\ValueObjects\InvalidRemainingException;
 use App\Models\Seasoning;
+use App\ValueObjects\Remaining;
 use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;
 
@@ -19,12 +20,12 @@ class SeasoningTest extends TestCase
         Model::unguard();
 
         $sut = new Seasoning([
-            'remaining' => 98,
+            'remaining' => new Remaining(98),
         ]);
 
         $this->assertSame(
             98,
-            $sut->getRemaining()
+            $sut->getRemaining()->value
         );
     }
 
@@ -38,14 +39,14 @@ class SeasoningTest extends TestCase
         Model::unguard();
 
         $sut = new Seasoning([
-            'remaining' => 100,
+            'remaining' => new Remaining(100),
         ]);
 
-        $sut->setRemaining(50);
+        $sut->setRemaining(new Remaining(50));
 
         $this->assertSame(
             50,
-            $sut->getRemaining()
+            $sut->getRemaining()->value
         );
     }
 
@@ -65,7 +66,7 @@ class SeasoningTest extends TestCase
 
         $this->expectException(InvalidRemainingException::class);
 
-        $sut->setRemaining($remaining);
+        $sut->setRemaining(new Remaining($remaining));
     }
 
     /**

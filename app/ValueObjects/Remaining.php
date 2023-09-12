@@ -6,9 +6,9 @@ use App\Exceptions\ValueObjects\InvalidRemainingException;
 
 final class Remaining
 {
-    public function __construct(int $remaining)
+    public function __construct(public readonly int $value)
     {
-        if ($remaining > 100 || $remaining < 0) {
+        if ($value > 100 || $value < 0) {
             throw new InvalidRemainingException();
         }
     }
