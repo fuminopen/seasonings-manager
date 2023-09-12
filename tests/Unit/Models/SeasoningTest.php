@@ -9,6 +9,25 @@ use Tests\TestCase;
 class SeasoningTest extends TestCase
 {
     /**
+     * 調味料は取得できる
+     *
+     * @test
+     */
+    public function canGetRemainingQuantity(): void
+    {
+        Model::unguard();
+
+        $sut = new Seasoning([
+            'remaining' => 98,
+        ]);
+
+        $this->assertSame(
+            98,
+            $sut->getRemaining()
+        );
+    }
+
+    /**
      * 調味料は残量を設定できる
      *
      * @test
