@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Exceptions\Models\InvalidRemainingException;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -28,10 +27,6 @@ final class Seasoning extends Model
      */
     public function setRemaining(int $remaining): self
     {
-        if ($remaining > 100 || $remaining < 0) {
-            throw new InvalidRemainingException();
-        }
-
         $this->remaining = $remaining;
 
         return $this;

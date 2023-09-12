@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Models;
 
-use App\Exceptions\Models\InvalidRemainingException;
+use App\Exceptions\ValueObjects\InvalidRemainingException;
 use App\Models\Seasoning;
 use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;

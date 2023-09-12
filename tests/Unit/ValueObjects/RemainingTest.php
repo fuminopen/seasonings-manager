@@ -2,6 +2,8 @@
 
 namespace Tests\Unit\ValueObjects;
 
+use App\Exceptions\ValueObjects\InvalidRemainingException;
+use App\ValueObjects\Remaining;
 use PHPUnit\Framework\TestCase;
 
 class RemainingTest extends TestCase
