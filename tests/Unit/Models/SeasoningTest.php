@@ -70,6 +70,25 @@ class SeasoningTest extends TestCase
     }
 
     /**
+     * 調味料の名称を取得できる
+     *
+     * @test
+     */
+    public function canGetNameOfSeasoning(): void
+    {
+        Model::unguard();
+
+        $sut = new Seasoning([
+            'name' => '醤油',
+        ]);
+
+        $this->assertSame(
+            '醤油',
+            $sut->getName()
+        );
+    }
+
+    /**
      * 不正な残量
      */
     public static function invalidRemainingProvider(): array
