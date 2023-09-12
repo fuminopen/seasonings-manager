@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\Seasoning;
+use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;
 
 class SeasoningTest extends TestCase
@@ -14,6 +15,8 @@ class SeasoningTest extends TestCase
      */
     public function canSetRemainingQuantity(): void
     {
+        Model::unguard();
+
         $sut = new Seasoning([
             'remaining' => 100,
         ]);

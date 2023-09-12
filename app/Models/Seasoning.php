@@ -5,7 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Seasoning extends Model
+final class Seasoning extends Model
 {
     use HasFactory;
+
+    /**
+     * 残量を設定する
+     *
+     * @param  int $remaining
+     * @return self
+     */
+    public function setRemaining(int $remaining): self
+    {
+        $this->remaining = $remaining;
+
+        return $this;
+    }
 }
