@@ -47,4 +47,22 @@ class SeasoningTest extends TestCase
             $sut->getRemaining()
         );
     }
+
+    /**
+     * 残量は0 ~ 100の間
+     *
+     * @test
+     */
+    public function remainingMustBeBetween0To100(): void
+    {
+        Model::unguard();
+
+        $sut = new Seasoning([
+            'remaining' => 100,
+        ]);
+
+        $this->expectException(InvalidRemainingException::class);
+
+        $sut->setRemaining(101);
+    }
 }
