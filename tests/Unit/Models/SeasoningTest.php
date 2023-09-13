@@ -89,6 +89,21 @@ class SeasoningTest extends TestCase
     }
 
     /**
+     * 名前を指定して調味料を作成できる
+     *
+     * @test
+     */
+    public function canCreateSeasoningWithName(): void
+    {
+        $result = Seasoning::createWithName('お酢')->getName();
+
+        $this->assertSame(
+            'お酢',
+            $result
+        );
+    }
+
+    /**
      * 不正な残量
      */
     public static function invalidRemainingProvider(): array
