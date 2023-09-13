@@ -22,6 +22,21 @@ class RemainingTest extends TestCase
     }
 
     /**
+     * Maxの状態で新しいインスタンスを作成することができる
+     *
+     * @test
+     */
+    public function canCreateNewFullInstance(): void
+    {
+        $result = Remaining::createAsFull()->value;
+
+        $this->assertSame(
+            100,
+            $result
+        );
+    }
+
+    /**
      * 不正な残量
      */
     public static function invalidRemainingProvider(): array
