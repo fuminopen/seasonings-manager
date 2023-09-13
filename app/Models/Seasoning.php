@@ -32,4 +32,14 @@ final class Seasoning extends Model
 
         return $this;
     }
+
+    /**
+     * 名前を取得する
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 }
