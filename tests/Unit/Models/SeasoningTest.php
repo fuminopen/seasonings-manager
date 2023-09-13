@@ -104,6 +104,20 @@ class SeasoningTest extends TestCase
     }
 
     /**
+     * 作成された調味料は残量はMax
+     *
+     * @test
+     */
+    public function createdSeasoningIsFull(): void
+    {
+        $sut = Seasoning::createWithName('料理酒');
+
+        $this->assertTrue(
+            $sut->isFull()
+        );
+    }
+
+    /**
      * 不正な残量
      */
     public static function invalidRemainingProvider(): array
