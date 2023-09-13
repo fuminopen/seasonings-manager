@@ -42,4 +42,17 @@ final class Seasoning extends Model
     {
         return $this->name;
     }
+
+    /**
+     * 名前を指定して調味料を作成する
+     *
+     * @param  string $name
+     * @return self
+     */
+    public static function createWithName(string $name): self
+    {
+        return new self([
+            'name' => $name,
+        ]);
+    }
 }
