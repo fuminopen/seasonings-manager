@@ -37,6 +37,22 @@ class RemainingTest extends TestCase
     }
 
     /**
+     * 自身が満タンか判定できる
+     *
+     * @test
+     * @dataProvider fullProvider
+     */
+    public function canJudgeIfTheInstanceIsFull(int $remaining, bool $expected): void
+    {
+        $sut = new Remaining($remaining);
+
+        $this->assertSame(
+            $expected,
+            $sut->isFull()
+        );
+    }
+
+    /**
      * 不正な残量
      */
     public static function invalidRemainingProvider(): array
@@ -44,6 +60,19 @@ class RemainingTest extends TestCase
         return [
             [-1,],
             [101,],
+        ];
+    }
+
+    /**
+     * 満タンかどうか
+     */
+    public static function fullProvider(): array
+    {
+        return [
+            [0, false],
+            [1, false],
+            [99, false],
+            [100, true],
         ];
     }
 }
