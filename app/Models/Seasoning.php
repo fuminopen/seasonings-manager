@@ -6,6 +6,12 @@ use App\ValueObjects\Remaining;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * 調味料
+ *
+ * @property string $name
+ * @property Remaining $remaining
+ */
 final class Seasoning extends Model
 {
     use HasFactory;
@@ -53,6 +59,17 @@ final class Seasoning extends Model
     {
         return new self([
             'name' => $name,
+            'remaining' => Remaining::createAsFull(),
         ]);
+    }
+
+    /**
+     * 残量がMaxである
+     *
+     * @return bool
+     */
+    public function isFull(): bool
+    {
+        return $this->remaining->isFull();
     }
 }

@@ -35,4 +35,14 @@ final class Remaining
     {
         return new self(self::MAX);
     }
+
+    /**
+     * 満タンである
+     *
+     * @return bool
+     */
+    public function isFull(): bool
+    {
+        return $this->value === self::MAX;
+    }
 }
