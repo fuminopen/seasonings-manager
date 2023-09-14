@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+
+  web:
+    image: "nginx:latest"
+    ports:
+      - "8080:80"
+    build:
+      dockerfile: "./.docker/web/Dockerfile"
+    volumes:
+      - "./:/var/www/html"
+
+  php:
+    container_name: "php"
+    build:
+      dockerfile: "./.docker/php/Dockerfile"
+    volumes:
+      - "./:/var/www"
