@@ -11,7 +11,7 @@ use Tests\TestCase;
 class SeasoningTest extends TestCase
 {
     /**
-     * 調味料は取得できる
+     * 調味料は残量を取得できる
      *
      * @test
      */
