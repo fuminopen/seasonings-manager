@@ -1,5 +1,8 @@
 .PHONY:
-	build up down
+	setup build up down
+
+setup: build
+	sudo chmod -R 777 ./app/storage
 
 build:
 	docker compose -f ./docker/docker-compose.yml build
