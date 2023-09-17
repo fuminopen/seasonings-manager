@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\UserGroup;
 use Tests\TestCase;
 
 class UserGroupTest extends TestCase
