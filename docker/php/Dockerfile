@@ -1,9 +1,12 @@
-FROM php:fpm-buster
+FROM php:8.2-rc-fpm
 
-COPY ./.docker/php/php.ini /usr/local/etc/php/php.ini
+COPY ./docker/php/php.ini /usr/local/etc/php/php.ini
 
-RUN apt-get update \
-    && apt-get -y install git zip unzip vim
+RUN apt -y update \
+    && apt -y install \
+    zip \
+    unzip \
+    curl
 
 RUN docker-php-ext-install pdo_mysql
 
