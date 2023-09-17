@@ -8,13 +8,13 @@ use Tests\TestCase;
 class UserGroupTest extends TestCase
 {
     /**
-     * 新しいインスタンスを作成できる
+     * 管理者として新しいインスタンスを作成できる
      *
      * @test
      */
-    public function canCreateSelf(): void
+    public function canCreateSelfAsAdmin(): void
     {
-        $result = UserGroup::createNew(3, 10);
+        $result = UserGroup::createNewAsAdmin(3, 10);
 
         $this->assertSame(
             3,
@@ -23,6 +23,9 @@ class UserGroupTest extends TestCase
         $this->assertSame(
             10,
             $result->group_id
+        );
+        $this->assertTrue(
+            $result->isAdmin()
         );
     }
 }
