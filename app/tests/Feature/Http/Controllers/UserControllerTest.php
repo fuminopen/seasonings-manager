@@ -22,6 +22,9 @@ class UserControllerTest extends TestCase
                 'name' => $this->faker->userName(),
                 'email' => $this->faker->safeEmail(),
                 'password' => $this->faker->password(),
+            ],
+            [
+                'Accept' => 'application/json',
             ]
         );
 
