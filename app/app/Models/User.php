@@ -61,4 +61,15 @@ class User extends Authenticatable
             'password' => $password,
         ]);
     }
+
+    /**
+     * 新しいグループを作成する
+     *
+     * @param string $groupName
+     * @return Group
+     */
+    public function createGroup(string $groupName): Group
+    {
+        return Group::createNew($groupName);
+    }
 }
