@@ -23,6 +23,7 @@ class GroupControllerTest extends TestCase
 
         $response = $this->post('/group', [
             'user_id' => $user->id,
+            'group_name' => $this->faker->company(),
         ]);
 
         $response->assertStatus(200);
