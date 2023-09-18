@@ -21,11 +21,26 @@ class GroupControllerTest extends TestCase
     {
         $user = User::factory()->create();
 
+        $groupName = $this->faker->company();
+
         $response = $this->post('/group', [
             'user_id' => $user->id,
-            'group_name' => $this->faker->company(),
+            'group_name' => $groupName,
         ]);
 
         $response->assertStatus(200);
+
+        $this->assertDatabaseHas(
+            'groups',
+            [
+                'name' => $groupName,
+            ]
+        );
+        $this->assertDatabaseHas(
+            'user_groups',
+            [
+                'user_id' => $user->id,
+            ]
+        );
     }
 }
