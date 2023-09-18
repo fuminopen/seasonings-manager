@@ -3,6 +3,7 @@
 namespace Tests\Unit\Models;
 
 use App\Models\UserGroup;
+use Illuminate\Database\Eloquent\Model;
 use Tests\TestCase;
 
 class UserGroupTest extends TestCase
@@ -27,5 +28,36 @@ class UserGroupTest extends TestCase
         $this->assertTrue(
             $result->isAdmin()
         );
+    }
+
+    /**
+     * 管理者であることを判定できる
+     *
+     * @test
+     * @dataProvider adminProvider
+     */
+    public function canJudgeIfTheInstanceIsAdmin(
+        int $userTypeId,
+        bool $expected,
+    ): void {
+        Model::unguard();
+
+        $sut = new UserGroup([
+            'user_type_id' => $userTypeId,
+        ]);
+
+        $this->assertSame(
+            $expected,
+            $sut->isAdmin()
+        );
+    }
+
+    public static function adminProvider(): array
+    {
+        return [
+            [0, false],
+            [1, true],
+            [2, false],
+        ];
     }
 }
