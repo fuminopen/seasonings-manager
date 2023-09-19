@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -46,6 +47,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * ユーザーグループ
+     *
+     * @return HasMany
+     */
+    public function userGroup(): HasMany
+    {
+        return $this->hasMany(UserGroup::class);
+    }
+
+    /**
      * 新しいユーザーを作成する
      *
      * @param string $name
@@ -55,11 +66,14 @@ class User extends Authenticatable
      */
     public static function createNew(string $name, string $email, string $password): self
     {
-        return new self([
+        $user = new self([
             'name' => $name,
             'email' => $email,
             'password' => $password,
         ]);
+        $user->save();
+
+        return $user;
     }
 
     /**
@@ -70,6 +84,13 @@ class User extends Authenticatable
      */
     public function createGroup(string $groupName): Group
     {
-        return Group::createNew($groupName);
+        $group = Group::createNew($groupName);
+
+        UserGroup::createNewAsAdmin(
+            $this->id,
+            $group->id,
+        );
+
+        return $group;
     }
 }

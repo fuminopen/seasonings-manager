@@ -38,11 +38,14 @@ class UserGroup extends Model
         int $groupId,
         int $userTypeId,
     ): self {
-        return new self([
+        $userGroup = new self([
             'user_id' => $userId,
             'group_id' => $groupId,
             'user_type_id' => $userTypeId,
         ]);
+        $userGroup->save();
+
+        return $userGroup;
     }
 
     /**

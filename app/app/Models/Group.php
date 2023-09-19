@@ -24,8 +24,11 @@ class Group extends Model
      */
     public static function createNew(string $name): self
     {
-        return new self([
+        $group = new self([
             'name' => $name,
         ]);
+        $group->save();
+
+        return $group;
     }
 }
