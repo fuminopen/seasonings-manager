@@ -9,6 +9,8 @@ use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * グループ新規作成時にDBに対して適切にレコードを作成することができる
      *
