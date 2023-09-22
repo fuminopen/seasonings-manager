@@ -17,6 +17,10 @@ return new class extends Migration
             $table->bigInteger('group_id');
             $table->bigInteger('user_type_id');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('user_type_id')->references('id')->on('user_types');
         });
     }
 
