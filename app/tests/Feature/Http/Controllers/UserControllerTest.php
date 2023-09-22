@@ -23,7 +23,7 @@ class UserControllerTest extends TestCase
         $password = $this->faker->password();
 
         $response = $this->post(
-            '/user',
+            '/users',
             [
                 'name' => $name,
                 'email' => $email,

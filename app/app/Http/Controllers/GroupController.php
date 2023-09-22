@@ -18,7 +18,7 @@ class GroupController extends Controller
     {
         $user = User::find($request->user_id);
 
-        $group = $user->createGroup($request->group_name);
+        $user->createGroup($request->group_name);
 
         return response()->json([
             'message' => '新しいグループの作成に成功しました。',

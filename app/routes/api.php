@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/user', [UserController::class, 'create']);
+Route::post('/users', [UserController::class, 'create']);
 
-Route::post('/group', [GroupController::class, 'create']);
+Route::post('/groups', [GroupController::class, 'create']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
