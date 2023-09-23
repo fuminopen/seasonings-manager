@@ -10,6 +10,15 @@ class UserGroup extends Model
     use HasFactory;
 
     /**
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'user_id',
+        'group_id',
+        'user_type_id',
+    ];
+
+    /**
      * 管理者として新しいインスタンスを作成する
      *
      * @param int $userId
