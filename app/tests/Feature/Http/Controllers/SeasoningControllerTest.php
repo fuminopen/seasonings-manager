@@ -27,9 +27,8 @@ class SeasoningControllerTest extends TestCase
         $seasoningName = $this->faker->word();
 
         $this->post('/seasonings', [
-            'user_id' => $user->id,
             'group_id' => $group->id,
-            'name' => $seasoningName,
+            'seasoning_name' => $seasoningName,
         ])->assertOk();
 
         $this->assertDatabaseHas(

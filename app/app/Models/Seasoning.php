@@ -17,6 +17,15 @@ final class Seasoning extends Model
     use HasFactory;
 
     /**
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'name',
+        'group_id',
+        'remaining',
+    ];
+
+    /**
      * 残量を取得する
      *
      * @return Remaining
