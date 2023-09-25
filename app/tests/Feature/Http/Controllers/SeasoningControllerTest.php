@@ -55,9 +55,7 @@ class SeasoningControllerTest extends TestCase
             ->recycle($group)
             ->create();
 
-        $response = $this->get('/seasonings', [
-            'group_id' => $group->id,
-        ]);
+        $response = $this->get('/seasonings?group_id=' . $group->id);
 
         $response->assertOk();
 
@@ -71,7 +69,7 @@ class SeasoningControllerTest extends TestCase
         foreach ($result as $r) {
             $this->assertTrue(
                 $seasonings->filter(
-                    fn (Seasoning $seasoning) => $seasoning->id === $r->id
+                    fn (Seasoning $seasoning) => $seasoning->id === $r['id']
                 )->isNotEmpty()
             );
         }

@@ -21,6 +21,8 @@ Route::post('/users', [UserController::class, 'create']);
 
 Route::post('/groups', [GroupController::class, 'create']);
 
+Route::get('/seasonings', [SeasoningController::class, 'index']);
+
 Route::post('/seasonings', [SeasoningController::class, 'create']);
 
 Route::middleware('auth:sanctum')->group(function () {
