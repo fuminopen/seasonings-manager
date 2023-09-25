@@ -2,12 +2,17 @@
 
 namespace Tests\Unit\Models;
 
+use App\Models\Group;
+use App\Models\User;
 use App\Models\UserGroup;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserGroupTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * 管理者として新しいインスタンスを作成できる
      *
@@ -15,14 +20,19 @@ class UserGroupTest extends TestCase
      */
     public function canCreateSelfAsAdmin(): void
     {
-        $result = UserGroup::createNewAsAdmin(3, 10);
+        $this->seed();
+
+        $user = User::factory()->create();
+        $group = Group::factory()->create();
+
+        $result = UserGroup::createNewAsAdmin($user->id, $group->id);
 
         $this->assertSame(
-            3,
+            $user->id,
             $result->user_id
         );
         $this->assertSame(
-            10,
+            $group->id,
             $result->group_id
         );
         $this->assertTrue(

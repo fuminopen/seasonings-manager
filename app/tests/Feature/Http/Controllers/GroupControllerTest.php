@@ -20,6 +20,8 @@ class GroupControllerTest extends TestCase
      */
     public function canCreateGroup(): void
     {
+        $this->seed();
+
         $user = User::factory()->create();
 
         $groupName = $this->faker->company();

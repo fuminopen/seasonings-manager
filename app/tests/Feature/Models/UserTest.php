@@ -18,6 +18,8 @@ class UserTest extends TestCase
      */
     public function canSaveGroupOnDb(): void
     {
+        $this->seed();
+
         /**
          * 準備
          */

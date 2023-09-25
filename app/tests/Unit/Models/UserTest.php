@@ -3,12 +3,14 @@
 namespace Tests\Unit\Models;
 
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
+    use RefreshDatabase;
     use WithFaker;
 
     /**
@@ -44,6 +46,8 @@ class UserTest extends TestCase
      */
     public function canCreateGroup(): void
     {
+        $this->seed();
+
         $user = User::createNew(
             $this->faker->name(),
             $this->faker->email(),
